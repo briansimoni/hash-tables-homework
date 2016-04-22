@@ -1,6 +1,4 @@
-/**
- * Created by maxxadmin on 4/20/16.
- */
+
 public class Node {
 
     private int key;

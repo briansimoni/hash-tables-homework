@@ -1,6 +1,4 @@
-/**
- * Created by maxxadmin on 4/20/16.
- */
+
 public class SinglyLinkedList {
 
     private Node first;
@@ -29,6 +27,23 @@ public class SinglyLinkedList {
         }
     }
 
+
+    void addNode(Object value){
+        if(this.size == 0) {
+            this.first.setKey(size);
+            this.first.setValue(value);
+
+            this.head = this.first;
+            this.size++;
+
+        } else {
+            Node node = new Node(size + 1, value);
+            this.head.setNext(node);
+            this.head = node;
+            this.size++;
+        }
+    }
+
     void removeNode(){
 
     }
@@ -36,6 +51,14 @@ public class SinglyLinkedList {
     Node getNode(int key) {
         Node x = this.first;
         while ((x.getKey() != key) && (x.getNext() != null)) {
+            x = x.getNext();
+        }
+        return x;
+    }
+
+    Node getNode(Object value) {
+        Node x = this.first;
+        while(!x.getValue().equals(value) && x.getNext() != null) {
             x = x.getNext();
         }
         return x;
