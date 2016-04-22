@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.Scanner;
 
 public class Main {
 
@@ -25,8 +26,45 @@ public class Main {
 
 
 
-        System.out.println(table.getObject("New York"));
-        System.out.println(table.getObject("Mount Darwin"));
+
+        System.out.println("Please enter a command");
+
+        boolean stop = false;
+
+        while(!stop) {
+            Scanner input = new Scanner(System.in);
+
+            String command = input.next();
+            String arguments = input.nextLine();
+            arguments = arguments.trim();
+
+
+            if(command.equals("stop")) {
+                stop = true;
+            } else {
+
+                String split[] = arguments.split(",");
+                String city1 = split[0].trim();
+                String city2 = "";
+                if(split.length > 1) {
+                    city2 = split[1].trim();
+                }
+
+                if(command.equals("distance")){
+
+                    System.out.println(table.getObject(city1));
+                    System.out.println(table.getObject(city2));
+
+
+                } else if (command.equals("retrieve")) {
+                    System.out.println(table.getObject(city1));
+                } else {
+                    System.out.println("Invalid input");
+                }
+
+            }
+        }
+
 
 
 
