@@ -14,7 +14,7 @@ public class Main {
         BufferedReader bufferReader = new BufferedReader(inputFile);
         String line;
 
-        while ((line = bufferReader.readLine()) != null)   {
+        while ((line = bufferReader.readLine()) != null) {
             String[] split = line.split(",");
             String city = split[0];
             String coordinates = split[1] + "," + split[2];
@@ -71,6 +71,12 @@ public class Main {
 
             }
         }
+
+//        table.printSizeOfBuckets();
+//        System.out.println("The total number of collisions is: " + table.getTotalCollisions());
+//        System.out.println("The maximum number of collisions for a bucket is: " + table.getMaxCollisions());
+        System.out.println("The average number of collisions is: " +
+                (double)table.getTotalCollisions() / (double)table.getSize());
 
 
 
