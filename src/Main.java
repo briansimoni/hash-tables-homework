@@ -52,8 +52,15 @@ public class Main {
 
                 if(command.equals("distance")){
 
-                    System.out.println(table.getObject(city1));
-                    System.out.println(table.getObject(city2));
+
+                    double lat1 = latitude((String)table.getObject(city1));
+                    double lon1 = longitude((String)table.getObject(city1));
+                    double lat2 = latitude((String)table.getObject(city2));
+                    double lon2 = longitude((String)table.getObject(city2));
+
+
+                    double distance = haversine(lat1, lon1, lat2, lon2);
+                    System.out.println(distance);
 
 
                 } else if (command.equals("retrieve")) {
@@ -70,6 +77,32 @@ public class Main {
 
     }
 
+    // Get latitude from coordinates string
+    static double latitude(String coordinates) {
+        String split[] = coordinates.split(",");
+        return Double.valueOf(split[0]);
+    }
+
+    // Get longitude from coordinates string
+    static double longitude(String coordinates) {
+        String split[] = coordinates.split(",");
+        return Double.valueOf(split[1]);
+    }
+
+
+
+
+    static double haversine(double lat1, double lon1, double lat2, double lon2) {
+        final double R = 6372.8;
+        double dLat = Math.toRadians(lat2 - lat1);
+        double dLon = Math.toRadians(lon2 - lon1);
+        lat1 = Math.toRadians(lat1);
+        lat2 = Math.toRadians(lat2);
+
+        double a = Math.pow(Math.sin(dLat / 2),2) + Math.pow(Math.sin(dLon / 2),2) * Math.cos(lat1) * Math.cos(lat2);
+        double c = 2 * Math.asin(Math.sqrt(a));
+        return R * c;
+    }
 
 
 
