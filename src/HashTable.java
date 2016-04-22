@@ -9,22 +9,35 @@ public class HashTable {
         this.size = size;
     }
 
-    public void insert(Object obj) {
-        int hashCode = hashCode((String)obj);
+    public void insert(Object key, Object value) {
+
+        int hashCode = hashCode((String)key);
         int index = (compression(hashCode, this.size));
+        if (index < 0 ) index = index * -1;
+
         if(this.bucketlist[index] == null) {
             this.bucketlist[index] = new SinglyLinkedList();
         }
-        this.bucketlist[index].addNode(obj);
+        this.bucketlist[index].addNode(key, value);
     }
 
     public Object getObject(Object key) {
+
         int hashCode = hashCode((String)key);
         int index = (compression(hashCode, this.size));
-        return this.bucketlist[index].getNode(key).getValue();
+        if (index < 0 ) index = index * -1;
+
+        if( this.bucketlist[index] != null && this.bucketlist[index].getNode(key) != null ) {
+            return this.bucketlist[index].getNode(key).getValue();
+        } else {
+            return null;
+        }
     }
 
 
+    // hashCode function from:
+    // Data Structures and Algorithms in Java, 6th edition
+    // Michael T. Goodrich, Roberto Tamassia, Michael H. Goldwasser
     private int hashCode(String s) {
         int h = 0;
         for (int i = 0; i < s.length(); i++) {

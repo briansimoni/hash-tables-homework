@@ -11,7 +11,7 @@ public class SinglyLinkedList {
         this.size = 0;
     }
 
-    void addNode(int key, Object value){
+    void addNode(Object key, Object value){
         if(this.size == 0) {
             this.first.setKey(key);
             this.first.setValue(value);
@@ -28,21 +28,21 @@ public class SinglyLinkedList {
     }
 
 
-    void addNode(Object value){
-        if(this.size == 0) {
-            this.first.setKey(size);
-            this.first.setValue(value);
-
-            this.head = this.first;
-            this.size++;
-
-        } else {
-            Node node = new Node(size + 1, value);
-            this.head.setNext(node);
-            this.head = node;
-            this.size++;
-        }
-    }
+//    void addNode(Object key, Object value){
+//        if(this.size == 0) {
+//            this.first.setKey(key);
+//            this.first.setValue(value);
+//
+//            this.head = this.first;
+//            this.size++;
+//
+//        } else {
+//            Node node = new Node(key, value);
+//            this.head.setNext(node);
+//            this.head = node;
+//            this.size++;
+//        }
+//    }
 
     void removeNode(){
 
@@ -50,16 +50,17 @@ public class SinglyLinkedList {
 
     Node getNode(int key) {
         Node x = this.first;
-        while ((x.getKey() != key) && (x.getNext() != null)) {
+        while ( x.getKey().equals(key) && x.getNext() != null ) {
             x = x.getNext();
         }
         return x;
     }
 
-    Node getNode(Object value) {
+    Node getNode(Object key) {
         Node x = this.first;
-        while(!x.getValue().equals(value) && x.getNext() != null) {
+        while( !x.getKey().equals(key) && x.getNext() != null ) {
             x = x.getNext();
+            System.out.println("collision");
         }
         return x;
     }

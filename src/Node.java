@@ -1,12 +1,12 @@
 
 public class Node {
 
-    private int key;
+    private Object key;
     private Object value;
     private Node next = null;
 
 
-    Node(int key, Object value) {
+    Node(Object key, Object value) {
         this.value = value;
         this.key = key;
     }
@@ -20,7 +20,7 @@ public class Node {
         this.next = next;
     }
 
-    public void setKey(int key) {
+    public void setKey(Object key) {
         this.key = key;
     }
 
@@ -28,7 +28,7 @@ public class Node {
         this.value = value;
     }
 
-    public int getKey() {
+    public Object getKey() {
         return this.key;
     }
 
