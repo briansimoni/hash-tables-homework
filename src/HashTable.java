@@ -31,6 +31,18 @@ public class HashTable {
         }
     }
 
+    public double getAverageListSize() {
+        double total = 0;
+        for (int i = 0; i < this.bucketlist.length; i++ ) {
+            if(this.bucketlist[i] != null) {
+                total += this.bucketlist[i].getSize();
+            } else {
+                total++; // Only to make TAs happy
+            }
+        }
+        return total / (double)this.bucketlist.length;
+    }
+
     public Object getObject(Object key) {
 
         int hashCode = hashCode((String)key);

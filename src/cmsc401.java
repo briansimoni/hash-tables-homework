@@ -1,14 +1,25 @@
+/**
+ * Brian Simoni
+ * V00681848
+ * CMSC401
+ * Homework 3
+ */
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Scanner;
 
-public class Main {
+public class cmsc401 {
 
     public static void main(String[] args) throws java.io.IOException {
 
 
         HashTable table = new HashTable(12000);
 
+        if(args.length == 0) {
+            System.out.println("Please specify a file name");
+            System.exit(-1);
+        }
 
         FileReader inputFile = new FileReader(args[0]);
         BufferedReader bufferReader = new BufferedReader(inputFile);
@@ -60,7 +71,7 @@ public class Main {
 
 
                     double distance = haversine(lat1, lon1, lat2, lon2);
-                    System.out.println(distance);
+                    System.out.println(Math.round(distance));
 
 
                 } else if (command.equals("retrieve")) {
@@ -72,14 +83,7 @@ public class Main {
             }
         }
 
-//        table.printSizeOfBuckets();
-//        System.out.println("The total number of collisions is: " + table.getTotalCollisions());
-//        System.out.println("The maximum number of collisions for a bucket is: " + table.getMaxCollisions());
-        System.out.println("The average number of collisions is: " +
-                (double)table.getTotalCollisions() / (double)table.getSize());
-
-
-
+        System.out.println(table.getAverageListSize());
 
     }
 
